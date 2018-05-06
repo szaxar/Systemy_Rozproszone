@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.gen";
+option java_outer_classname = "Currencies";
+option objc_class_prefix = "HLW";
+
+package currencies;
+
+enum Currency {
+    PLN = 0;
+    GBP = 1;
+    USD = 2;
+    EUR = 3;
+}
+
+message CurrencyMsgRequest
+{
+    Currency currency = 1;
+}
+
+message CurrencyMsgReturn
+{
+    float currencyValue = 1;
+}
+
+service CurrencyStream {
+    rpc subscribeCurrencyValue(CurrencyMsgRequest) returns (stream CurrencyMsgReturn) {}
+}
